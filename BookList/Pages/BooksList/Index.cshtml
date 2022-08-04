@@ -1,0 +1,82 @@
+﻿@page
+@model BookList.Pages.BooksList.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">
+            Book List
+        </h2>
+    </div>
+    <div class="col-3">
+        <a asp-page="Create" class="btn btn-primary form-control text-white"> Create New Book</a>
+    </div>
+
+
+
+
+
+    <div class="col-12 border p-3 mt-3">
+        <form method="post">
+
+
+            @{
+                if (Model.books.Count() > 0)
+                {
+                    <table class="table table-striped border">
+                                    <tr class="table-secondary">
+                                        <th>
+                                            <label asp-for="books.FirstOrDefault().Name"></label>
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(m => m.books.FirstOrDefault().Author)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(m => m.books.FirstOrDefault().ISBN)
+                                        </th>
+                                        <th>
+                                            Delete
+                                        </th>
+                                        <th>
+                                            Edite
+                                        </th>
+                                    </tr>
+                        @foreach (var item in Model.books)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(m => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Author)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.ISBN)
+                                </td>
+                                <td>
+                                    <a asp-page="Delete"  asp-route-Id="@item.Id" class="btn btn-danger text-white btn-sm">Delete</a>
+                                </td>
+                                <td>
+                                    <a asp-page="Edit" asp-route-Id="@item.Id" class="btn btn-warning text-white btn-sm">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+                else
+            {
+                <p>No Books Available</p>
+            }
+            }
+
+
+
+        </form>
+    </div>
+</div>
