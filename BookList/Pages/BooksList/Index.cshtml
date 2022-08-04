@@ -60,7 +60,7 @@
                                     @Html.DisplayFor(m => item.ISBN)
                                 </td>
                                 <td>
-                                    <a asp-page="Delete"  asp-route-Id="@item.Id" class="btn btn-danger text-white btn-sm">Delete</a>
+                                    <button asp-page-handler="Delete"  asp-route-Id="@item.Id" class="btn btn-danger text-white btn-sm" onclick="return confirm(`Are You sure to Delete @item.Name`)">Delete</button>
                                 </td>
                                 <td>
                                     <a asp-page="Edit" asp-route-Id="@item.Id" class="btn btn-warning text-white btn-sm">Edit</a>
